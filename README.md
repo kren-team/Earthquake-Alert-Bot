@@ -1,4 +1,4 @@
-# QEarthquake-Alert-Bot
+# Earthquake-Alert-Bot
 
 日本の地震速報を監視し、震度3以上の地震が発生した際に Discord チャンネルへ通知する Bot です。
 
@@ -21,8 +21,8 @@
 ### 1. リポジトリをクローン
 
 ```bash
-git clone https://github.com/yourusername/QuakeLink.git
-cd QuakeLink
+git clone https://github.com/j341nono/Earthquake-Alert-Bot
+cd Earthquake-Alert-Bot
 ```
 
 ### 2. 依存パッケージをインストール
@@ -38,7 +38,6 @@ npm install
 3. 左メニューの **「Bot」** を開き **「Add Bot」** をクリック
 4. **「Reset Token」** で Token を生成してコピーしておく
 5. **「Privileged Gateway Intents」** は不要 (Guilds インテントのみ使用)
-6. 左メニューの **「General Information」** を開き **Application ID** をコピーしておく
 
 ### 4. Bot をサーバに招待する
 
@@ -69,7 +68,6 @@ cp .env.example .env
 ```env
 DISCORD_TOKEN=your_discord_bot_token_here
 DISCORD_CHANNEL_ID=your_channel_id_here
-DISCORD_APPLICATION_ID=your_application_id_here
 POLL_INTERVAL_MS=5000
 MIN_SCALE=3
 ```
@@ -125,36 +123,6 @@ npm start
 
 ---
 
-## デプロイ方法
-
-### Railway
-
-1. [Railway](https://railway.app/) にアクセスしてアカウントを作成
-2. **「New Project」→「Deploy from GitHub repo」** でリポジトリを選択
-3. 環境変数を Railway の Variables に追加:
-   - `DISCORD_TOKEN`
-   - `DISCORD_CHANNEL_ID`
-   - `DISCORD_APPLICATION_ID`
-4. Start Command を以下に設定:
-   ```
-   npm run build && npm start
-   ```
-
-### Render
-
-1. [Render](https://render.com/) にアクセスしてアカウントを作成
-2. **「New Web Service」** でリポジトリを選択
-3. 以下を設定:
-   - **Runtime:** Node
-   - **Build Command:** `npm install && npm run build`
-   - **Start Command:** `npm start`
-4. **「Environment」** タブで環境変数を追加
-
-> **注意:** Railway / Render の無料プランはスリープがある場合があります。
-> 24時間稼働させるには有料プランを検討してください。
-
----
-
 ## プロジェクト構成
 
 ```
@@ -184,8 +152,3 @@ src/
   - エンドポイント: `https://api.p2pquake.net/v2/history?codes=551&limit=1`
   - 利用規約に従い適切な間隔 (5秒以上) でポーリングしてください
 
----
-
-## ライセンス
-
-MIT
