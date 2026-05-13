@@ -30,15 +30,21 @@ export interface EarthquakeInfo {
 }
 
 // P2P地震情報 APIのレスポンス1件
+// 実際のレスポンス: earthquake / points がトップレベルに直接存在する
 export interface P2PEarthquakeResponse {
   id: string;
-  code: number;   // 551 = 地震情報
-  time: string;   // 受信時刻
-  data: {
-    comment?: string;
-    domestic_tsunami?: string;
-    earthquake: EarthquakeInfo;
-    points: ObservationPoint[];
+  code: number;             // 551 = 地震情報
+  time: string;             // 受信時刻
+  earthquake: EarthquakeInfo;
+  points: ObservationPoint[];
+  comments?: {
+    freeFormComment?: string;
+  };
+  issue?: {
+    source: string;
+    time: string;
+    type: string;
+    correct: string;
   };
 }
 

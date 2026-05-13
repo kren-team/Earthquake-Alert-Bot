@@ -55,7 +55,7 @@ async function startEarthquakePolling(): Promise<void> {
       if (!data) return;
 
       // 最新地震情報を常にメモリに保存 (/latest コマンド用)
-      saveLatestEarthquake(data.data.earthquake);
+      saveLatestEarthquake(data.earthquake);
 
       // 通知条件を満たしていなければスキップ
       if (!shouldNotify(data, minScale)) return;
@@ -64,8 +64,8 @@ async function startEarthquakePolling(): Promise<void> {
       markAsSeen(data.id);
 
       logger.info(
-        `地震通知: id=${data.id}, maxScale=${data.data.earthquake.maxScale}, ` +
-        `震源=${data.data.earthquake.hypocenter.name}`
+        `地震通知: id=${data.id}, maxScale=${data.earthquake.maxScale}, ` +
+        `震源=${data.earthquake.hypocenter.name}`
       );
 
       // Discord チャンネルへ通知を送信
@@ -76,7 +76,7 @@ async function startEarthquakePolling(): Promise<void> {
       }
 
       const youtubeUrl = await getYouTubeLiveUrl();
-      const embed = buildEarthquakeEmbed(data.data.earthquake, youtubeUrl);
+      const embed = buildEarthquakeEmbed(data.earthquake, youtubeUrl);
 
       await channel.send({ embeds: [embed] });
       logger.info("Discord に地震速報を送信しました");
@@ -106,7 +106,7 @@ async function main(): Promise<void> {
   setupCommandHandler();
 
   // Bot の準備完了イベント
-  client.once("ready", async (readyClient) => {
+  client.once("clientReady", async (readyClient) => {
     logger.info(`Bot ログイン完了: ${readyClient.user.tag}`);
     logger.info(`サーバ数: ${readyClient.guilds.cache.size}`);
 

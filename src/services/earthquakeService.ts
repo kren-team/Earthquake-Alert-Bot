@@ -46,7 +46,7 @@ export async function fetchLatestEarthquake(): Promise<P2PEarthquakeResponse | n
  */
 export function shouldNotify(data: P2PEarthquakeResponse, minScale: number): boolean {
   const { id } = data;
-  const { maxScale } = data.data.earthquake;
+  const { maxScale } = data.earthquake;
 
   // P2P API の震度値に変換 (例: 震度3 → 30)
   const minScaleP2P = minScale * 10;
