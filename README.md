@@ -1,4 +1,4 @@
-# QuakeLink 🌏
+# QEarthquake-Alert-Bot
 
 日本の地震速報を監視し、震度3以上の地震が発生した際に Discord チャンネルへ通知する Bot です。
 
